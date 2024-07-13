@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-use function Laravel\Prompts\select;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,68 +72,3 @@ Route::prefix('admin')->group(function () {
 // Route::get('admin/user',function(){
 
 // });
-Route::get('/posts', function () {
-    //  lấy dữ liệu 
-    // $posts = DB::table('post')->get();
-    // lấy 10 bản ghi 
-    // $posts = DB::table('posts')->select('id', 'title','view')
-    // ->limit(10)->get();
-    // update data
-    // DB::table('posts')
-    // ->where('id', '=',13)
-    // ->update(
-    //     [
-    //         'title' => 'Dữ liệu cập nhật'
-    //     ]
-    //     );
-    // delete data
-    // DB::table('post')->delete(18);
-    // // lấy ra các bài viết có view > 800
-    // $posts = DB::table('posts')
-    // ->where('view', '>', 800)
-    // ->get();
-    // nối 2 bảng
-    $posts = DB::table('posts')
-        ->join('categories', 'cat_id', '=', 'categories.id')
-        ->get();
-    return view('post-list', compact('posts'));
-    // return $posts;
-
-    Route::get('/poyss', function () {
-        $posts = DB::table('posts')
-            ->orderBy('view', 'desc')
-            ->limit(8)
-            ->get();
-
-        return view('post-list', compact('posts'));
-    });
-
-
-
-    // hiển thị bài viết theo danh mục 
-    Route::get('category(id)', function ($id) {
-        $posts = DB::table('books')
-            ->where('cate_id', '=', $id)
-            ->get();
-
-        return view('post-list', compact('posts'));
-    });
-    // chi tiết bài viết 
-    Route::get('/post/(id)', function ($id) {
-        $posts = DB::table('posts')
-            ->where('id', $id)
-            ->first();
-
-        return $posts;
-    });
-
-    // Route::get('/', function () {
-        // $books_max = DB::table('books')
-        //     ->orderBy('price', 'desc')
-        //     ->limit(8)
-        //     ->get();
-
-    //     // dd($books_max);
-    //     return view('welcome');
-    // });
-});

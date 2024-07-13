@@ -7,8 +7,8 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <header>Header</header> 
-    <nav>Nav</nav>  
+    <header>Header</header>
+    <nav>Nav</nav>
     <article>
         @yield('content')
     </article>

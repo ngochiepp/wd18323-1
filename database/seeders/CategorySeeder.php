@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+
+use Faker\Factory as Faker;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,12 +16,16 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            ['name'=> 'thể thao'],
-            ['name'=> 'pháp luật'],
-            ['name'=> 'thế giới'],
-            ['name'=> 'du lịch'],
-            ['name'=> 'sách']
-        ]);
+        $faker = Faker::create();
+
+            DB::table('categories')->insert([
+                ['name' => 'Thể thao'],
+                ['name' => 'Sức khỏe'],
+                ['name' => 'Thư viện'],
+                ['name' => 'Khoa học'],
+                ['name' => 'Thông tin'],
+                ['name' => 'Kinh doanh'],
+            ]);
     }
+
 }
